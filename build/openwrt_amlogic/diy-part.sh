@@ -41,6 +41,13 @@ sed -i 's/"管理权"/"改密码"/g' `grep "管理权" -rl ./`
 sed -i 's/"带宽监控"/"监控"/g' `grep "带宽监控" -rl ./`
 sed -i 's/"Argon 主题设置"/"Argon设置"/g' `grep "Argon 主题设置" -rl ./`
 
+# 设置打包固件的机型，内核组合（可用内核是时时变化的,过老的内核就删除的，所以要选择什么内核请看说明）
+cat >$GITHUB_WORKSPACE/amlogic_openwrt <<-EOF
+#amlogic_model=s905x3_s905x2_s905x_s905d_s922x_s912
+amlogic_model=s905d
+amlogic_kernel=5.4.181
+rootfs_size=960
+EOF
 
 # 整理固件包时候,删除您不想要的固件或者文件,让它不需要上传到Actions空间
 cat >${GITHUB_WORKSPACE}/Clear <<-EOF
